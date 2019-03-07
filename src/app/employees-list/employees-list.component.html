@@ -26,8 +26,9 @@
             <td>{{employee.firstName}}</td>
             <td>{{employee.lastName}}</td>
             <td>
-              <span class="edit btn" style="background:teal " routerLink="/employee-edit/{{employee.id}}" > Edit</span>
-              <span class="delete" (click)="deleteEmployee(employee.id)"> Delete</span>
+             <span class="edit btn" style="background:teal " routerLink="/update-employee/{{employee.id}}" > Edit</span>
+            
+              <span class="delete btn" style="background:steelblue" (click)="deleteEmployee(employee.id)"> Delete</span>
             </td>
           </tr>
         </tbody>

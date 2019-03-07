@@ -22,6 +22,16 @@ export class RestApiService {
     })
   }
   
+
+    // HttpClient API get() method => Fetch employee
+    getEmployee(id): Observable<Employee> {
+      return this.http.get<Employee>(this.apiURL + '/employee/' + id)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      )
+    }  
+
     // HttpClient API get() method => Fetch employees list
     getEmployees(): Observable<Employee> {
       return this.http.get<Employee>(this.apiURL + '/employee')
@@ -40,6 +50,14 @@ export class RestApiService {
       catchError(this.handleError)
     )
   }  
+
+  deleteEmployee(id){
+    return this.http.delete<Employee>(this.apiURL + '/employee/' + id, this.httpOptions)
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+  }
 
     handleError(error) {
       let errorMessage = '';
