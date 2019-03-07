@@ -72,27 +72,11 @@ export class RestApiService {
   // HttpClient API put() method => Update employee
   updateEmployee(id, employee): Observable<string> {
 
-  
-
-  
- 
-
 
     return this.http.put<string>(this.apiURL + '/employee/' + id,
-    
-
-    
+  
     JSON.stringify(employee),
     this.httpOptions
-    /*{ 
-      responseType: 'text' ,
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-  
-       
-      })
-    }
-    */
   
     )
     
@@ -107,6 +91,9 @@ export class RestApiService {
 
     
   }
+
+
+  
 
 
     handleError(error) {

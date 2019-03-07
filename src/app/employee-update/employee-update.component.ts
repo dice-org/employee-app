@@ -37,16 +37,12 @@ export class EmployeeUpdateComponent implements OnInit {
 
       
 
-     /* .subscribe(data => {
+      .subscribe(data => {
         console.log(data);
         this.router.navigate(['/employees-list'])
       }
-      )*/
-      .subscribe(
-        (data) => console.log(data), // data is string
-        (error) => console.log(error)
-    )
-
+      )
+    
 
 
 

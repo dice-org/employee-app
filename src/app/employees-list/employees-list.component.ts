@@ -9,13 +9,20 @@ import { RestApiService } from '../shared/rest-api.service';
 export class EmployeesListComponent implements OnInit {
 
   Employee: any = [];
+  interval: any;
 
   constructor(
     public restApi: RestApiService
   ) { }
 
   ngOnInit() {
-    this.loadEmployees()
+  //  this.loadEmployees(); 
+
+    this.interval = setInterval(() => { 
+      this.loadEmployees(); 
+  }, 500);
+
+   // this.loadEmployees()
 
   }
 
@@ -25,18 +32,20 @@ export class EmployeesListComponent implements OnInit {
         this.Employee = data;
       })
     }
+
+
+    
   // Delete employee
   deleteEmployee(id) {
-    this.restApi.deleteEmployee(id).subscribe(data => {
-      console.log(data);
-
-     // this.loadEmployees()
-    })
-   /* if (window.confirm('Are you sure, you want to delete?')){
+    if (window.confirm('Are you sure, you want to delete?')){
       this.restApi.deleteEmployee(id).subscribe(data => {
-        this.loadEmployees()
-      })*/
-    //}
+        //this.loadEmployees()
+        location.reload();
+
+      })
+    }
+   
+
   } 
 
 
