@@ -28,4 +28,32 @@ export class EmployeeUpdateComponent implements OnInit {
 
   }
 
+  // Update employee data
+  updateEmployee() {
+    if(window.confirm('Are you sure, you want to update?')){
+      this.restApi.updateEmployee(this.id, this.employeeData)
+
+      
+
+      
+
+     /* .subscribe(data => {
+        console.log(data);
+        this.router.navigate(['/employees-list'])
+      }
+      )*/
+      .subscribe(
+        (data) => console.log(data), // data is string
+        (error) => console.log(error)
+    )
+
+
+
+
+    }
+
+
+  }
+
+
 }

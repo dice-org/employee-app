@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Employee } from './employee';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
+import { text } from '@angular/core/src/render3';
 
 @Injectable({
   providedIn: 'root'
@@ -17,24 +18,32 @@ export class RestApiService {
 
   // Http Options
   httpOptions = {
+    
     headers: new HttpHeaders({
-      'Content-Type': 'application/json'
-    })
+      'Content-Type': 'application/json',
+
+     
+    }
+    )
+  
+    
   }
   
 
     // HttpClient API get() method => Fetch employee
     getEmployee(id): Observable<Employee> {
       return this.http.get<Employee>(this.apiURL + '/employee/' + id)
+      
       .pipe(
         retry(1),
         catchError(this.handleError)
       )
+      
     }  
 
     // HttpClient API get() method => Fetch employees list
     getEmployees(): Observable<Employee> {
-      return this.http.get<Employee>(this.apiURL + '/employee')
+      return this.http.get<Employee>(this.apiURL + '/employee',  )
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -58,6 +67,47 @@ export class RestApiService {
       catchError(this.handleError)
     )
   }
+
+
+  // HttpClient API put() method => Update employee
+  updateEmployee(id, employee): Observable<string> {
+
+  
+
+  
+ 
+
+
+    return this.http.put<string>(this.apiURL + '/employee/' + id,
+    
+
+    
+    JSON.stringify(employee),
+    this.httpOptions
+    /*{ 
+      responseType: 'text' ,
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+  
+       
+      })
+    }
+    */
+  
+    )
+    
+    .pipe(
+      retry(1),
+      
+      catchError(this.handleError)
+    )
+ 
+
+
+
+    
+  }
+
 
     handleError(error) {
       let errorMessage = '';
